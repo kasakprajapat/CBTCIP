@@ -1,0 +1,36 @@
+def print_bill(items, discount):
+    print("\n--- Bill ---")
+    total = 0
+    for item in items:
+        name, price, quantity = item
+        cost = price * quantity
+        print(f"{name} (x{quantity}): ${cost:.2f}")
+        total += cost
+
+    discount_amount = total * (discount / 100)
+    total_after_discount = total - discount_amount
+
+    print("-------------")
+    print(f"Subtotal: ${total:.2f}")
+    print(f"Discount: {discount}% (${discount_amount:.2f})")
+    print(f"Total: ${total_after_discount:.2f}")
+    print("-------------")
+
+def main():
+    items = []
+
+    while True:
+        name = input("Enter item name (or 'done' to finish): ")
+        if name.lower() == 'done':
+            break
+        price = float(input("Enter item price: "))
+        quantity = int(input("Enter item quantity: "))
+
+        items.append((name, price, quantity))
+    
+    discount = float(input("Enter discount percentage (if any otherwise enter 0)0: "))
+
+    print_bill(items, discount)
+
+if __name__ == "__main__":
+    main()
